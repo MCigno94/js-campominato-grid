@@ -58,17 +58,17 @@ function selectElements(selector) {
                 if (numbersBomb[j] == cell.textContent) {
                     this.classList.add('active_red')
                     alert('hai perso')
+                    return
                 } else {
                     this.classList.add('active_blue')
                 }
-                counterClick += 1;
             }
-            //console.log(counter);
+            counterClick += 1;
+            //console.log(counterClick);
         });
         //console.log(Number(cell.textContent));
     }
     console.log(numbersBomb);
-    console.log(counterClick);
 }
 /** creo una sequenza di numeri
  * @param {number} min valore di partenza
