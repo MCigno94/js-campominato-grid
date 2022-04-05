@@ -30,8 +30,7 @@ function generateGrid(selector, tag_name, class_name, limit) {
     }
 
 }
-generateGrid('.cells', 'div', 'cell', 100);
-selectElements('.cell', 'active')
+
 
 
 /**
@@ -49,9 +48,7 @@ function selectElements(selector, active_class) {
         spanElement.append(numbers[i]);
         cell.append(spanElement);
 
-
         cell.addEventListener('click', function() {
-
             this.firstChild.style.opacity = '1'
             this.classList.toggle('active_blue')
         })
@@ -74,3 +71,18 @@ function sequenceInteger(min, max) {
     return numbers;
 
 }
+let btnElement = document.getElementById('play');
+let levelSelectElement = document.getElementById('level');
+
+btnElement.addEventListener('click', function() {
+    event.preventDefault()
+    const level = levelSelectElement.value;
+    if (level === 'easy') {
+        generateGrid('.cells', 'div', 'cell', 100);
+    } else if (level === 'medium') {
+        generateGrid('.cells', 'div', 'cell', 81);
+    } else {
+        generateGrid('.cells', 'div', 'cell', 49);
+    }
+    selectElements('.cell', 'active');
+})

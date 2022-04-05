@@ -28,6 +28,14 @@ body {
     justify-content: center;
 }
 
+.cell_9 {
+    width: calc(100% / 9);
+}
+
+.cell_7 {
+    width: calc(100% / 7);
+}
+
 .active_blue {
     background-color: cornflowerblue;
 }
