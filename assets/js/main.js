@@ -23,7 +23,7 @@ la cella cliccata si colora di azzurro.
 function generateGrid(selector, tag_name, class_name, limit) {
     const cellsElement = document.querySelector(selector)
 
-    for (let i = 1; i < limit; i++) {
+    for (let i = 1; i <= limit; i++) {
         const cellItem = document.createElement(tag_name);
         cellItem.classList.add(class_name)
         cellsElement.append(cellItem)
