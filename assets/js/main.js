@@ -11,6 +11,11 @@ Quando l'utente clicca su ogni cella,
 la cella cliccata si colora di azzurro.
 */
 
+let btnElement = document.getElementById('play');
+let levelSelectElement = document.getElementById('level');
+let cells = document.querySelector('.cells');
+let maxCells = 0;
+let counterClick = 0;
 
 /**
  * Generate a grid
@@ -36,10 +41,10 @@ function generateGrid(selector, tag_name, class_name, limit) {
  * @param {string} selector css selector
  * @param {string} active_class a css class name
  */
-function selectElements(selector, active_class) {
+function selectElements(selector) {
     const cells = document.querySelectorAll(selector);
     const numbers = sequenceInteger(1, 100);
-    const numbersBomb = generateCellsNumbers();
+    let numbersBomb = generateCellsNumbers(maxCells);
 
     for (let i = 0; i < cells.length; i++) {
         const cell = cells[i];
@@ -52,17 +57,19 @@ function selectElements(selector, active_class) {
             for (let j = 0; j < numbersBomb.length; j++) {
                 if (numbersBomb[j] == cell.textContent) {
                     this.classList.add('active_red')
+                    alert('hai perso')
                 } else {
                     this.classList.add('active_blue')
                 }
+                counterClick += 1;
             }
+            //console.log(counter);
         });
         //console.log(Number(cell.textContent));
-        //console.log(numbersBomb.toString);
     }
     console.log(numbersBomb);
+    console.log(counterClick);
 }
-
 /** creo una sequenza di numeri
  * @param {number} min valore di partenza
  * @param {number} max valore di arrivo
@@ -77,24 +84,22 @@ function sequenceInteger(min, max) {
     return numbers;
 }
 
-let btnElement = document.getElementById('play');
-let levelSelectElement = document.getElementById('level');
-let cells = document.querySelector('.cells');
-
-
 btnElement.addEventListener('click', function(event) {
     event.preventDefault()
     cells.innerHTML = '';
     const level = levelSelectElement.value;
     if (level === 'easy') {
-        generateGrid('.cells', 'div', 'cell_10', 100);
-        selectElements('.cell_10', 'active');
+        maxCells = 100;
+        generateGrid('.cells', 'div', 'cell_10', maxCells);
+        selectElements('.cell_10');
     } else if (level === 'medium') {
-        generateGrid('.cells', 'div', 'cell_9', 81);
-        selectElements('.cell_9', 'active');
+        maxCells = 81;
+        generateGrid('.cells', 'div', 'cell_9', maxCells);
+        selectElements('.cell_9');
     } else {
-        generateGrid('.cells', 'div', 'cell_7', 49);
-        selectElements('.cell_7', 'active');
+        maxCells = 49;
+        generateGrid('.cells', 'div', 'cell_7', maxCells);
+        selectElements('.cell_7');
     }
 });
 
@@ -108,11 +113,11 @@ function getRandomInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function generateCellsNumbers() {
+function generateCellsNumbers(max) {
     const randomNumbers = [];
     // genero 16 numeri casuali unici
     while (randomNumbers.length !== 16) {
-        const randomNumber = getRandomInteger(1, 100)
+        const randomNumber = getRandomInteger(1, max)
 
         if (!randomNumbers.includes(randomNumber)) {
             randomNumbers.push(randomNumber)
@@ -123,6 +128,7 @@ function generateCellsNumbers() {
 //console.log(generateCellsNumbers());
 
 // se clicco su una bomba il gioco si interrompe
+
 
 // se finisco di cliccare tutti i numeri il gioco si interrompe
 
