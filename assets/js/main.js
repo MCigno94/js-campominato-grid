@@ -32,14 +32,14 @@ function generateGrid(selector, tag_name, class_name, limit) {
 }
 
 /**
- * Select all elements and attach an event listenter
+ * Seleziono tutti gli elementi ed inserisco i valori e lo stile al momento del click
  * @param {string} selector css selector
  * @param {string} active_class a css class name
  */
 function selectElements(selector, active_class) {
     const cells = document.querySelectorAll(selector);
     const numbers = sequenceInteger(1, 100);
-
+    const numbersBomb = generateCellsNumbers();
     for (let i = 0; i < cells.length; i++) {
         const cell = cells[i];
         const spanElement = document.createElement('span');
@@ -47,19 +47,28 @@ function selectElements(selector, active_class) {
         cell.append(spanElement);
 
         cell.addEventListener('click', function() {
-            this.firstChild.style.opacity = '1'
-            this.classList.toggle('active_blue')
-        })
+
+            if (cell.textContent == numbersBomb.toString) {
+                this.classList.add('active_red');
+
+            } else {
+                cell.classList.add('active_blue');
+
+            }
+        });
+        //console.log(Number(cell.textContent));
+        //console.log(numbersBomb.toString);
     }
+    //console.log(numbersBomb);
 }
 
-/**
- * @param {number} min 
- * @param {number} max 
+/** creo una sequenza di numeri
+ * @param {number} min valore di partenza
+ * @param {number} max valore di arrivo
  * @returns array di numeri
  */
 function sequenceInteger(min, max) {
-    let numbers = [];
+    let numbers = []; // array contenitore
     for (let i = min; i <= max; i++) {
         let number = i;
         numbers.push(number);
@@ -69,11 +78,12 @@ function sequenceInteger(min, max) {
 
 let btnElement = document.getElementById('play');
 let levelSelectElement = document.getElementById('level');
-let cell = document.querySelector('.cells');
+let cells = document.querySelector('.cells');
 
-btnElement.addEventListener('click', function() {
+
+btnElement.addEventListener('click', function(event) {
     event.preventDefault()
-    cell.innerHTML = '';
+    cells.innerHTML = '';
     const level = levelSelectElement.value;
     if (level === 'easy') {
         generateGrid('.cells', 'div', 'cell_10', 100);
@@ -85,4 +95,31 @@ btnElement.addEventListener('click', function() {
         generateGrid('.cells', 'div', 'cell_7', 49);
         selectElements('.cell_7', 'active');
     }
-})
+});
+
+/** genero 16 numeri casuali per simulare le bombe
+ * 
+ * @param {number} min Minimun number to generate
+ * @param {number} max Max number
+ * @returns {number}
+ */
+function getRandomInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function generateCellsNumbers() {
+    const randomNumbers = [];
+    // genero 16 numeri casuali unici
+    while (randomNumbers.length !== 6) {
+        const randomNumber = getRandomInteger(1, 10)
+
+        if (!randomNumbers.includes(randomNumber)) {
+            randomNumbers.push(randomNumber)
+        }
+    }
+    return randomNumbers;
+}
+//console.log(generateCellsNumbers());
+
+
+//console.log(selectBomb(10, generateCellsNumbers()));
