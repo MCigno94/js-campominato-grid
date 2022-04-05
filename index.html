@@ -7,19 +7,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campo minato</title>
 
+    <!-- Bootstrap CSS v5.0.2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     <link rel="stylesheet" href="./assets/css/style.css">
+
 </head>
 
 <body>
 
-    <div class="container">
-        <div class="cells">
-            <div class="cell"></div>
-            <!-- /.cell -->
-        </div>
-        <!-- /.cells -->
+    <div id="site_header">
+        <nav class="navbar navbar-light bg-white">
+            <div class="container-fluid w-75">
+                <a class="navbar-brand d-flex align-items-center" href="#">
+                    <img src="./img/logo-boolean.jpg" alt="" style="width: 50px;" class="d-inline-block align-text-top img-fluid">
+                    <span class="fw-bold">
+                        Campo Minato
+                    </span>
+                </a>
+                <div class="level_select">
+                    <label for="level" class="px-2">Difficoltà: </label>
+                    <select id="level" style="width: 200px;" name="level">
+                      <option value="easy">Esay</option>
+                      <option value="medium">Medium</option>
+                      <option value="hard">Hard</option>
+                    </select>
+                    <input type="submit" class="ms-2" value="Play" style="width: 100px; height: 100%;">
+                </div>
+                <!-- /.level_select -->
+            </div>
+        </nav>
+        <!-- /.navbar -->
     </div>
-    <!-- /.container -->
+    <!-- /#site_header -->
+
+    <div id="site_main">
+        <div class="container">
+            <div class="cells">
+                <div class="cell"></div>
+                <!-- /.cell -->
+            </div>
+            <!-- /.cells -->
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /#site_main -->
+
+
 
 
 

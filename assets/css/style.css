@@ -5,12 +5,12 @@
 }
 
 body {
-    background-color: black;
+    background-color: rgb(152, 241, 251);
 }
 
 .container {
-    width: 800px;
-    margin: 2rem auto;
+    width: 1000px;
+    margin: 5rem auto;
 }
 
 .cells {
@@ -19,15 +19,15 @@ body {
 }
 
 .cell {
-    width: calc(100% / 8);
-    border: 1px solid white;
+    width: calc(100% / 10);
     aspect-ratio: 1 / 1;
-    color: white;
+    border: 1.5px solid black;
+    color: black;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.active_sky_blue {
-    background-color: paleturquoise;
+.active_blue {
+    background-color: cornflowerblue;
 }
