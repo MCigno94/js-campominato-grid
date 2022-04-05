@@ -40,6 +40,7 @@ function selectElements(selector, active_class) {
     const cells = document.querySelectorAll(selector);
     const numbers = sequenceInteger(1, 100);
     const numbersBomb = generateCellsNumbers();
+
     for (let i = 0; i < cells.length; i++) {
         const cell = cells[i];
         const spanElement = document.createElement('span');
@@ -48,18 +49,18 @@ function selectElements(selector, active_class) {
 
         cell.addEventListener('click', function() {
 
-            if (cell.textContent == numbersBomb.toString) {
-                this.classList.add('active_red');
-
-            } else {
-                cell.classList.add('active_blue');
-
+            for (let j = 0; j < numbersBomb.length; j++) {
+                if (numbersBomb[j] == cell.textContent) {
+                    this.classList.add('active_red')
+                } else {
+                    this.classList.add('active_blue')
+                }
             }
         });
         //console.log(Number(cell.textContent));
         //console.log(numbersBomb.toString);
     }
-    //console.log(numbersBomb);
+    console.log(numbersBomb);
 }
 
 /** creo una sequenza di numeri
@@ -110,8 +111,8 @@ function getRandomInteger(min, max) {
 function generateCellsNumbers() {
     const randomNumbers = [];
     // genero 16 numeri casuali unici
-    while (randomNumbers.length !== 6) {
-        const randomNumber = getRandomInteger(1, 10)
+    while (randomNumbers.length !== 16) {
+        const randomNumber = getRandomInteger(1, 100)
 
         if (!randomNumbers.includes(randomNumber)) {
             randomNumbers.push(randomNumber)
@@ -121,5 +122,8 @@ function generateCellsNumbers() {
 }
 //console.log(generateCellsNumbers());
 
+// se clicco su una bomba il gioco si interrompe
 
-//console.log(selectBomb(10, generateCellsNumbers()));
+// se finisco di cliccare tutti i numeri il gioco si interrompe
+
+// se il gioco si interrompe per aver cliccato su una bomba seleziono le bombe rimaste
