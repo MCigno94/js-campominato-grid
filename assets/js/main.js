@@ -69,9 +69,11 @@ function sequenceInteger(min, max) {
 
 let btnElement = document.getElementById('play');
 let levelSelectElement = document.getElementById('level');
+let cell = document.querySelector('.cells');
 
 btnElement.addEventListener('click', function() {
     event.preventDefault()
+    cell.innerHTML = '';
     const level = levelSelectElement.value;
     if (level === 'easy') {
         generateGrid('.cells', 'div', 'cell_10', 100);
