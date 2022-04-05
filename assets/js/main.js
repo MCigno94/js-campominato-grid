@@ -31,8 +31,6 @@ function generateGrid(selector, tag_name, class_name, limit) {
 
 }
 
-
-
 /**
  * Select all elements and attach an event listenter
  * @param {string} selector css selector
@@ -52,12 +50,10 @@ function selectElements(selector, active_class) {
             this.firstChild.style.opacity = '1'
             this.classList.toggle('active_blue')
         })
-
     }
 }
 
 /**
- * 
  * @param {number} min 
  * @param {number} max 
  * @returns array di numeri
@@ -69,8 +65,8 @@ function sequenceInteger(min, max) {
         numbers.push(number);
     }
     return numbers;
-
 }
+
 let btnElement = document.getElementById('play');
 let levelSelectElement = document.getElementById('level');
 
@@ -78,11 +74,13 @@ btnElement.addEventListener('click', function() {
     event.preventDefault()
     const level = levelSelectElement.value;
     if (level === 'easy') {
-        generateGrid('.cells', 'div', 'cell', 100);
+        generateGrid('.cells', 'div', 'cell_10', 100);
+        selectElements('.cell_10', 'active');
     } else if (level === 'medium') {
-        generateGrid('.cells', 'div', 'cell', 81);
+        generateGrid('.cells', 'div', 'cell_9', 81);
+        selectElements('.cell_9', 'active');
     } else {
-        generateGrid('.cells', 'div', 'cell', 49);
+        generateGrid('.cells', 'div', 'cell_7', 49);
+        selectElements('.cell_7', 'active');
     }
-    selectElements('.cell', 'active');
 })
